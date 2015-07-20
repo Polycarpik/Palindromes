@@ -6,21 +6,21 @@ public class Main {
 
     public static void main(String[] args) {
         /**
-         * Point is: we have upper and lower limit presented by multiplications: 100*100 = 10000 and 999*999 = 998001.
-         * From this point we understand that the biggest palindrome we are able to get is 997799. Using palindrome's
+         * Point is: we have upper and lower limits presented by multiplications: 100*100 = 10000 and 999*999 = 998001.
+         * From this point we understand that the largest palindrome we are able to get is 997799. Using palindrome's
          * features we build palindromes by mirroring 3-digit numbers starting with 997. Important is that we produce
-         * search on decreasing values so the first factorised palindrome we get is the biggest one.
+         * search on decreasing values so the first factorised palindrome we get is the largest one.
          *
-         * At this step we make factorization of palindrome presented by "bruteForce" method: we count root to have
-         * the starting point and then search for compatible integral multipliers. Because we can't get integral root
-         * for every palindrome we get, so we use two numbers as upper and lower rounding. We provide search based
+         * At this step we make factorization of palindrome presented by bruteForce method: we count square root to have
+         * the starting point and then search for compatible integral multipliers. Considering we can't get integral square
+         * root for every palindrome we get, we have to use two numbers as upper and lower rounding. We provide search based
          * on this numbers.
          *
-         * As long as we need only 3-digit multipliers we also have bounds for our search -- [100,999]. Also we have
+         * As long as we need only 3-digit multipliers we also have bounds for our search -- [100,999]. Also we have square
          * root number as algebraic average. This way we achieve improvement of brute force by more than two times.
          */
         for (int i = 997; i > 100; i--) {
-            //As mentioned below, if bruteForce returns not 0 so integral multiplier is found.
+            //As mentioned below, if bruteForce returns not 0 then integral multiplier is found.
             if (bruteForce(makePalindrome(i)) != 0)
                 return;
         }
@@ -30,7 +30,7 @@ public class Main {
      * This is the first step of algorithm -- build the palindrome.
      *
      * @param number is value which will be mirrored to palindrome.
-     *               Should be emphasised that this function oriented only on given task,
+     *               It should be emphasised that this function is specialised only on given task,
      *               so it works only for 3-digit numbers.
      * @return gives palindrome.
      */
@@ -45,18 +45,17 @@ public class Main {
      * This is the second step -- restricted factorisation.
      *
      * @param number is a palindrome.
-     * @return 0 if palindrome doesn't have integral multipliers
-     * or one of the multipliers if such is found.
+     * @return 0 if palindrome doesn't have integral multipliers or one of the multipliers if such is found.
      */
     public static int bruteForce(final int number) {
         final int root = (int) sqrt(number);
 
         /**
-         * @param LIMIT_1 provided for algebraic average count based on lower limit of root.
+         * @param LIMIT_1 provided for algebraic average count based on lower limit of square root.
          */
         final int LIMIT_1 = root * 2;
         /**
-         * @param LIMIT_2 provided for algebraic average count based on upper limit of root.
+         * @param LIMIT_2 provided for algebraic average count based on upper limit of square root.
          */
         final int LIMIT_2 = (root + 1) * 2;
 
